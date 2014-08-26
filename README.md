@@ -1,6 +1,6 @@
 # SwipeBack
 
-Re-enable iOS7 swipe-to-back with custom back button.
+Re-enable iOS7 swipe-to-back while custom back button is set.
 
 
 ## Background

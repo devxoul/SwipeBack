@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "SwipeBack"
   s.version      = "1.0.0"
-  s.summary      = "SwipeBack"
+  s.summary      = "Re-enable iOS7 swipe-to-back while custom back button is set."
   s.homepage     = "http://github.com/devxoul/SwipeBack"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "devxoul" => "devxoul@gmail.com" }
