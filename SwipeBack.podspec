@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SwipeBack"
-  s.version      = "0.1.0"
+  s.version      = "1.0.0"
   s.summary      = "SwipeBack"
   s.homepage     = "http://github.com/devxoul/SwipeBack"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
