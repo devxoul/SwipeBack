@@ -25,6 +25,7 @@
 
 #import <JRSwizzle/JRSwizzle.h>
 
+#import "UINavigationController+SwipeBack.h"
 #import "UIViewController+SwipeBack.h"
 
 
@@ -43,7 +44,7 @@
 - (void)hack_viewDidAppear:(BOOL)animated
 {
     [self hack_viewDidAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.enabled = self.navigationController.swipeBackEnabled;
 }
 
 @end

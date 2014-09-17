@@ -25,4 +25,6 @@
 
 @interface UINavigationController (SwipeBack)
 
+@property (nonatomic, assign) BOOL swipeBackEnabled; // default is `YES`
+
 @end

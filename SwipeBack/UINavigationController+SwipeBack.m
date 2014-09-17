@@ -24,6 +24,7 @@
 
 
 #import <JRSwizzle/JRSwizzle.h>
+#import <objc/runtime.h>
 
 #import "UINavigationController+SwipeBack.h"
 
@@ -46,13 +47,36 @@
 - (void)hack_viewDidLoad
 {
     [self hack_viewDidLoad];
-    self.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
+    if (self.swipeBackEnabled) {
+        self.interactivePopGestureRecognizer.delegate = self.swipeBackEnabled? (id<UIGestureRecognizerDelegate>)self: nil;
+    } else {
+        self.interactivePopGestureRecognizer.delegate = nil;
+    }
 }
 
 - (void)hack_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [self hack_pushViewController:viewController animated:animated];
     self.interactivePopGestureRecognizer.enabled = NO;
+}
+
+
+#pragma mark - swipeBackEnabled
+
+- (BOOL)swipeBackEnabled
+{
+    NSNumber *enabled = objc_getAssociatedObject(self, @selector(swipeBackEnabled));
+    if (enabled == nil) {
+        return YES; // default value
+    }
+    return enabled.boolValue;
+}
+
+- (void)setSwipeBackEnabled:(BOOL)enabled
+{
+    objc_setAssociatedObject(self, @selector(swipeBackEnabled), @(enabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.interactivePopGestureRecognizer.delegate = nil;
+    self.interactivePopGestureRecognizer.enabled = enabled;
 }
 
 @end
