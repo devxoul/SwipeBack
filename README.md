@@ -1,52 +1,43 @@
-# SwipeBack
+SwipeBack
+=========
 
-Re-enable iOS7 swipe-to-back while custom back button is set.
+Enable iOS7 swipe-to-back when custom back button is set.
 
+Installation
+------------
 
-## Background
+Use [CocoaPods](http://cocoapods.org).
 
-1. With setting custom back button via `leftBarButtonItem`, default swipe-to-back gesture is disabled.
-2. Assigning `interactivePopGestureRecognizer` as `UINavigationController` (a common solution) can cause unexpected errors:
+#### Podfile
 
-    > - nested pop animation can result in corrupted navigation bar
-    > - Finishing up a navigation transition in an unexpected state. Navigation Bar subview tree might get corrupted.
-
-3. Put custom code everywhere around `UINavigationController` is too annoying.
-
-
-## The Answer is SwipeBack
-
-1. **Not annoying**  
-You don't need to code.
-
-2. **iOS7 native behavior**  
-Not a foolishly-customized gesture recognizer.
-
-3. **Safe**  
-No error anymore.
-
-
-## Use SwipeBack
-
-### CocoaPods
-
-Just add a line below into your `Podfile`. You don't need to write any code. CocoaPods automatically import SwipeBack globally.
-
-```
-pod 'SwipeBack'
+```ruby
+platform :ios, '7.0'
+pod 'SwipeBack', '~> 1.0'
 ```
 
-### Without CocoaPods (Why not use?)
+Usage
+-----
 
-Import SwipeBack at your `.pch` file.
+### Basic Usage
 
+Just install SwipeBack with CocoaPods. Your application now supports swipe-to-back feature.
+
+### Enabling and Disabling
+
+You can set `swipeBackEnabled` for a specific `UINavigationController`. Default value is `YES`.
+
+```objc
+#import <SwipeBack/SwipeBack.h>
+
+// ...
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.swipeBackEnabled = NO;
+}
 ```
-#import "SwipeBack.h"
-```
 
-It's done.
+License
+-------
 
-
-## How does it work
-
-See [`UINavigationController+SwipeBack.m`](https://github.com/devxoul/SwipeBack/blob/master/SwipeBack/UINavigationController%2BSwipeBack.m) and [`UIViewController+SwipeBack.m`](https://github.com/devxoul/SwipeBack/blob/master/SwipeBack/UIViewController%2BSwipeBack.m). Want to know more about method swizzling, visit [here](http://nshipster.com/method-swizzling/).
+SwipeBack is under MIT license. See [LICENSE](https://github.com/devxoul/SwipeBack/blob/master/LICENSE) for more info.
