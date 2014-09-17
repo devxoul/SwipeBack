@@ -11,6 +11,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = 'SwipeBack/*.{h,m}'
   s.frameworks   = 'UIKit', 'Foundation', 'QuartzCore'
-  s.prefix_header_contents = '#import "SwipeBack.h"'
   s.dependency 'JRSwizzle', '~> 1.0'
 end
