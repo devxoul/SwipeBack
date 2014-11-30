@@ -48,17 +48,42 @@
 - (void)hack_viewDidLoad
 {
     [self hack_viewDidLoad];
-    if (self.swipeBackEnabled) {
-        self.interactivePopGestureRecognizer.delegate = self.swipeBackEnabled? (id<UIGestureRecognizerDelegate>)self: nil;
-    } else {
-        self.interactivePopGestureRecognizer.delegate = nil;
-    }
+    self.interactivePopGestureRecognizer.delegate = self.swipeBackEnabled ? self : nil;
 }
 
 - (void)hack_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [self hack_pushViewController:viewController animated:animated];
     self.interactivePopGestureRecognizer.enabled = NO;
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+/**
+ * Prevent `interactiveGestureRecognizer` from canceling navigation button's touch event. (patch for #2)
+ */
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    Class UINavigationButton = NSClassFromString(@"UINavigationButton");
+    if ([touch.view isKindOfClass:UINavigationButton] && [touch.view isDescendantOfView:self.navigationBar]) {
+        UIButton *button = (id)touch.view;
+        button.highlighted = YES;
+    }
+    return YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    CGPoint location = [gestureRecognizer locationInView:self.navigationBar];
+    UIView *view = [self.navigationBar hitTest:location withEvent:nil];
+
+    Class UINavigationButton = NSClassFromString(@"UINavigationButton");
+    if ([view isKindOfClass:UINavigationButton] && [view isDescendantOfView:self.navigationBar]) {
+        UIButton *button = (id)view;
+        button.highlighted = NO;
+    }
+    return YES;
 }
 
 

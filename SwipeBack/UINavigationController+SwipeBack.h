@@ -24,7 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (SwipeBack)
+@interface UINavigationController (SwipeBack) <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) BOOL swipeBackEnabled; // default is `YES`
 
