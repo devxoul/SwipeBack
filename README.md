@@ -1,7 +1,7 @@
 SwipeBack
 =========
 
-[![CocoaPods](http://img.shields.io/cocoapods/v/SwipeBack.svg)](http://cocoapods.org/?q=name%3ASwipeBack%20author%3Adevxoul)
+[![CocoaPods](http://img.shields.io/cocoapods/v/SwipeBack.svg?style=flat)](http://cocoapods.org/?q=name%3ASwipeBack%20author%3Adevxoul)
 
 Enable iOS7 swipe-to-back when custom back button is set.
 
