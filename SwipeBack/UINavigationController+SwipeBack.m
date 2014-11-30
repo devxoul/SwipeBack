@@ -64,8 +64,7 @@
  */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    Class UINavigationButton = NSClassFromString(@"UINavigationButton");
-    if ([touch.view isKindOfClass:UINavigationButton] && [touch.view isDescendantOfView:self.navigationBar]) {
+    if ([touch.view isKindOfClass:[UIButton class]] && [touch.view isDescendantOfView:self.navigationBar]) {
         UIButton *button = (id)touch.view;
         button.highlighted = YES;
     }
@@ -77,8 +76,7 @@
     CGPoint location = [gestureRecognizer locationInView:self.navigationBar];
     UIView *view = [self.navigationBar hitTest:location withEvent:nil];
 
-    Class UINavigationButton = NSClassFromString(@"UINavigationButton");
-    if ([view isKindOfClass:UINavigationButton] && [view isDescendantOfView:self.navigationBar]) {
+    if ([view isKindOfClass:[UIButton class]] && [view isDescendantOfView:self.navigationBar]) {
         UIButton *button = (id)view;
         button.highlighted = NO;
     }
