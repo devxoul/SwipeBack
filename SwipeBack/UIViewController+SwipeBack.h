@@ -23,6 +23,8 @@
 //
 
 
+#import <UIKit/UIKit.h>
+
 @interface UIViewController (SwipeBack)
 
 @end
