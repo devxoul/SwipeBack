@@ -73,6 +73,11 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    // patch for #3
+    if (self.viewControllers.count <= 1) {
+        return NO;
+    }
+
     CGPoint location = [gestureRecognizer locationInView:self.navigationBar];
     UIView *view = [self.navigationBar hitTest:location withEvent:nil];
 
