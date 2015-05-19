@@ -74,7 +74,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     // patch for #3
-    if (self.viewControllers.count <= 1) {
+    if (self.viewControllers.count <= 1 || !self.swipeBackEnabled) {
         return NO;
     }
 
@@ -103,8 +103,6 @@
 - (void)setSwipeBackEnabled:(BOOL)enabled
 {
     objc_setAssociatedObject(self, @selector(swipeBackEnabled), @(enabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.interactivePopGestureRecognizer.delegate = nil;
-    self.interactivePopGestureRecognizer.enabled = enabled;
 }
 
 @end
