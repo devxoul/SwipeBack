@@ -44,7 +44,7 @@
 - (void)hack_viewDidAppear:(BOOL)animated
 {
     [self hack_viewDidAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = self.navigationController.swipeBackEnabled;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 @end
