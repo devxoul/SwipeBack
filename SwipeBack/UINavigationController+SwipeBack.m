@@ -22,11 +22,31 @@
 // SOFTWARE.
 //
 
-
-#import <JRSwizzle/JRSwizzle.h>
 #import <objc/runtime.h>
-
 #import "UINavigationController+SwipeBack.h"
+
+
+void __swipeback_swizzle(Class cls, SEL originalSelector) {
+    NSString *originalName = NSStringFromSelector(originalSelector);
+    NSString *alternativeName = [NSString stringWithFormat:@"swizzled_%@", originalName];
+
+    SEL alternativeSelector = NSSelectorFromString(alternativeName);
+
+    Method originalMethod = class_getInstanceMethod(cls, originalSelector);
+    Method alternativeMethod = class_getInstanceMethod(cls, alternativeSelector);
+
+    class_addMethod(cls,
+                    originalSelector,
+                    class_getMethodImplementation(cls, originalSelector),
+                    method_getTypeEncoding(originalMethod));
+    class_addMethod(cls,
+                    alternativeSelector,
+                    class_getMethodImplementation(cls, alternativeSelector),
+                    method_getTypeEncoding(alternativeMethod));
+
+    method_exchangeImplementations(class_getInstanceMethod(cls, originalSelector),
+                                   class_getInstanceMethod(cls, alternativeSelector));
+}
 
 
 @implementation UINavigationController (SwipeBack)
@@ -35,24 +55,20 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self jr_swizzleMethod:@selector(viewDidLoad)
-                    withMethod:@selector(hack_viewDidLoad)
-                         error:nil];
-        [self jr_swizzleMethod:@selector(pushViewController:animated:)
-                    withMethod:@selector(hack_pushViewController:animated:)
-                         error:nil];
+        __swipeback_swizzle(self, @selector(viewDidLoad));
+        __swipeback_swizzle(self, @selector(pushViewController:animated:));
     });
 }
 
-- (void)hack_viewDidLoad
+- (void)swizzled_viewDidLoad
 {
-    [self hack_viewDidLoad];
+    [self swizzled_viewDidLoad];
     self.interactivePopGestureRecognizer.delegate = self.swipeBackEnabled ? self : nil;
 }
 
-- (void)hack_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void)swizzled_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self hack_pushViewController:viewController animated:animated];
+    [self swizzled_pushViewController:viewController animated:animated];
     self.interactivePopGestureRecognizer.enabled = NO;
 }
 
