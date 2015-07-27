@@ -24,6 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
+void __swipeback_swizzle(Class cls, SEL originalSelector);
+
 @interface UINavigationController (SwipeBack) <UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) BOOL swipeBackEnabled; // default is `YES`

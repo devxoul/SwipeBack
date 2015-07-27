@@ -22,12 +22,9 @@
 // SOFTWARE.
 //
 
-
-#import <JRSwizzle/JRSwizzle.h>
-
+#import <objc/runtime.h>
 #import "UINavigationController+SwipeBack.h"
 #import "UIViewController+SwipeBack.h"
-
 
 @implementation UIViewController (SwipeBack)
 
@@ -35,15 +32,22 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self jr_swizzleMethod:@selector(viewDidAppear:)
-                    withMethod:@selector(hack_viewDidAppear:)
-                         error:nil];
+        __swipeback_swizzle(self, @selector(viewDidAppear:));
+//        [self swizzle:@selector(viewDidAppear:)];
     });
 }
 
-- (void)hack_viewDidAppear:(BOOL)animated
++ (void)swizzle:(SEL)selector
 {
-    [self hack_viewDidAppear:animated];
+    NSString *name = [NSString stringWithFormat:@"swizzled_%@", NSStringFromSelector(selector)];
+    Method m1 = class_getInstanceMethod(self, selector);
+    Method m2 = class_getInstanceMethod(self, NSSelectorFromString(name));
+    method_exchangeImplementations(m1, m2);
+}
+
+- (void)swizzled_viewDidAppear:(BOOL)animated
+{
+    [self swizzled_viewDidAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
