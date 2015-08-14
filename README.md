@@ -5,6 +5,9 @@ SwipeBack
 
 Enable iOS7 swipe-to-back when custom back button is set.
 
+> SwipeBack plays with iOS native gesture recognizers, so you can also use it to disable swipe-to-back feature.
+
+
 Getting Started
 ---------------
 
