@@ -17,7 +17,7 @@ Use [CocoaPods](http://cocoapods.org).
 
 ```ruby
 platform :ios, '7.0'
-pod 'SwipeBack', '~> 1.0'
+pod 'SwipeBack', '~> 1.1'
 ```
 
 Usage
