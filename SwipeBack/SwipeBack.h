@@ -25,3 +25,4 @@
 
 #import "UINavigationController+SwipeBack.h"
 #import "UIViewController+SwipeBack.h"
+#import "SwipeBackDefaults.h"
