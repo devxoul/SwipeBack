@@ -24,7 +24,7 @@
 
 #import <objc/runtime.h>
 #import "UINavigationController+SwipeBack.h"
-
+#import "SwipeBackDefaults.h"
 
 void __swipeback_swizzle(Class cls, SEL originalSelector) {
     NSString *originalName = NSStringFromSelector(originalSelector);
@@ -111,7 +111,7 @@ void __swipeback_swizzle(Class cls, SEL originalSelector) {
 {
     NSNumber *enabled = objc_getAssociatedObject(self, @selector(swipeBackEnabled));
     if (enabled == nil) {
-        return YES; // default value
+        return [SwipeBackDefaults defaults].swipeBackEnabled; // default value
     }
     return enabled.boolValue;
 }
