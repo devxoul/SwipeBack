@@ -22,7 +22,12 @@
 // SOFTWARE.
 //
 
+#import <Foundation/Foundation.h>
 
-#import "UINavigationController+SwipeBack.h"
-#import "UIViewController+SwipeBack.h"
-#import "SwipeBackDefaults.h"
+@interface SwipeBackDefaults : NSObject
+
+@property (nonatomic) BOOL swipeBackEnabled;
+
++ (SwipeBackDefaults *)defaults;
+
+@end

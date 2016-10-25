@@ -22,6 +22,7 @@
 		03E1867519C9D56E00A2914E /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E1867419C9D56E00A2914E /* DemoViewController.m */; };
 		03E1FD4F1A2B0D79009F776D /* UINavigationController+SwipeBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E1FD4C1A2B0D79009F776D /* UINavigationController+SwipeBack.m */; };
 		03E1FD501A2B0D79009F776D /* UIViewController+SwipeBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E1FD4E1A2B0D79009F776D /* UIViewController+SwipeBack.m */; };
+		954286951CF834F500EAD6B9 /* SwipeBackDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 954286941CF834F500EAD6B9 /* SwipeBackDefaults.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		04D87589A9D3073CBA59E925 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4DFFADCEFB754AB1A539322E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F558BACAC8C6C7BD92EE927 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		954286931CF834F500EAD6B9 /* SwipeBackDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeBackDefaults.h; sourceTree = "<group>"; };
+		954286941CF834F500EAD6B9 /* SwipeBackDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeBackDefaults.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 				03E1FD4C1A2B0D79009F776D /* UINavigationController+SwipeBack.m */,
 				03E1FD4D1A2B0D79009F776D /* UIViewController+SwipeBack.h */,
 				03E1FD4E1A2B0D79009F776D /* UIViewController+SwipeBack.m */,
+				954286931CF834F500EAD6B9 /* SwipeBackDefaults.h */,
+				954286941CF834F500EAD6B9 /* SwipeBackDefaults.m */,
 			);
 			name = SwipeBack;
 			path = ../../SwipeBack;
@@ -284,6 +289,7 @@
 				033BDD7619C9D339004A8851 /* AppDelegate.m in Sources */,
 				03E1867519C9D56E00A2914E /* DemoViewController.m in Sources */,
 				033BDD7219C9D339004A8851 /* main.m in Sources */,
+				954286951CF834F500EAD6B9 /* SwipeBackDefaults.m in Sources */,
 				03E1FD501A2B0D79009F776D /* UIViewController+SwipeBack.m in Sources */,
 				03E1FD4F1A2B0D79009F776D /* UINavigationController+SwipeBack.m in Sources */,
 			);

@@ -22,7 +22,31 @@
 // SOFTWARE.
 //
 
-
-#import "UINavigationController+SwipeBack.h"
-#import "UIViewController+SwipeBack.h"
 #import "SwipeBackDefaults.h"
+
+@implementation SwipeBackDefaults
+
++ (SwipeBackDefaults *)defaults
+{
+    static SwipeBackDefaults *defaults = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        defaults = [[SwipeBackDefaults alloc] init];
+    });
+    
+    return defaults;
+}
+
+#pragma mark - Init
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _swipeBackEnabled = YES;
+    }
+    return self;
+}
+
+@end
